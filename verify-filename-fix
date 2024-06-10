@@ -343,7 +343,7 @@ kbulk_replicas_command() {
 
   		kafka-reassign-partitions ${bootstrap} ${config} --reassignment-json-file kbulk-replica-assignment.json --execute &>/dev/null
 
-  		cond="kafka-reassign-partitions ${bootstrap} ${config} --reassignment-json-file replica-assignment.json --verify | grep -io \"complete\""
+  		cond="kafka-reassign-partitions ${bootstrap} ${config} --reassignment-json-file kbulk-replica-assignment.json --verify | grep -io \"complete\""
   		wait_completion "$cond" "Waiting for reasignment to complete." "Reassignment complete for Topic: ${topic}     " 2
   	else
   		cyan "Skipping topic $(cyan_bold "${topic}")$(cyan ": All partitions have replicas matching the target")"
